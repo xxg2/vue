@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue 实战</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="radio" v-model="picked" value="html" id="html">
+      <label for=”html”>HTML</label>
+      <br>
+      <input type="radio" v-model="picked" value="js" id="js"> <label for="js">JavaScript</label>
+      <br>
+      <input type="radio" v-model="picked" value="css" id="css"> <label for="css">CSS</label>
+      <br>
+      <p>选择的项是: {{ picked }}</p>
+
+      <input type="checkbox" v-model="checked" value="html" id="html"> <label for="html">HTML</label>
+      <br>
+      <input type="checkbox" v-model="checked" value="js" id="js"><label for="js">JavaScript</label>
+      <br>
+      <p>选择的项是:{{ checked }}<p>
+      <input type="text" v-model.lazy="message">
+      <p>{{ message }}</p>
+      <input type="number" v-model.number="message">
+      <p>{{ typeof message }}</p>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          picked: 'js',
+          checked:['html', 'js'],
+          message: ''
+        }
+      })
+    </script>
+  </body>
+</html>

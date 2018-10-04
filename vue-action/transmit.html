@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue 实战</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name">
+      <h1>hi {{name}}</h1>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+      Vue.component('component-a', {
+        template: '<button @click="handleEvent">通过父链直接修改数据</button>',
+        methods: {
+          handleEvent() {
+            this.$parent.name = 'comp';
+          }
+        }
+      })
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: ''
+        }
+      })
+    </script>
+  </body>
+</html>

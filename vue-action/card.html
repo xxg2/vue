@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue 实战</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-component></my-component>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+      Vue.component('my-component', {
+        template: '<div>组件内容</div>'
+      });
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: ''
+        }
+      })
+    </script>
+  </body>
+</html>

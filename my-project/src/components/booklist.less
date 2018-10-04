@@ -1,0 +1,50 @@
+.book-list {
+  margin: 0 14px;
+}
+.book-list > .header {
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid #efefef;
+}
+.book-list > .header > .heading {
+  display: table-cell;
+  padding: 12px;
+  text-align: left;
+}
+
+.book-list > .header > .more {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+  font-size: 10px;
+  color: #cccccc;
+  padding-right: 14px;
+}
+
+.book-list .book-items {
+  display: table;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.book-list .book {
+  font-size: 10px;
+  text-align: center;
+  float: left;
+  width: 33%;
+  margin: 12px auto;
+  height:210px;
+}
+.book-list .book .title, & .authors {
+  margin: 5px auto;
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.book-list .book .authors {
+  color: #898989;
+  margin-top: 10px;
+  text-align: left;
+}

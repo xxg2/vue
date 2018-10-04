@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue 实战</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div>{{text.split(',').reverse().join(',')}}</div> -->
+      <div>{{reverseText}}</div>
+      <div>full name: {{fullName}}</div>
+      <span :class="dynClass">v-bind with dynamic class</span>
+      <div :style="'color':color, 'fontSize':fontSize +'px'}">文本</div>
+      效果如下
+      <div style="color: red; font-size: 14px;">文本</div>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          text: '123,456',
+          firstName: 'Tom',
+          lastName: 'Guan',
+          isActive: true,
+          isError: false
+        },
+        computed: {
+          reverseText: function() {
+            return this.text.split(',').reverse().join(',')
+          },
+          dynClass: function() {
+            return {
+              active: this.isActive && !this.isError,
+              'text-fail':this.isError
+            }
+          },
+          fullName: {
+            get: function() {
+              return this.firstName + ' ' +this.lastName;
+            },
+            set: function(value) {
+              var names = value.split(' ');
+              this.firstName = names[0];
+              this.lastName = names[1];
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

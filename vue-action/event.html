@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue 实战</title>
+  </head>
+  <body>
+    <div id="app">
+      <a href="http://www.baidu.com" @click="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.stop="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.prevent="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.stop.prevent="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.capture="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.self="handleClick('messge', $event)">test</a>
+      <a href="http://www.baidu.com" @click.once="handleClick('messge', $event)">test</a>
+      <input @keyup.13="handleClick">
+      <!-- Vue.config.keyCodes.fl = 112 -->
+      <!-- Shift + S -->
+      <input @keyup.shift .83=”handleSave”>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        methods: {
+          handleClick(message, event) {
+            event.preventDefault();
+            alert(message);
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

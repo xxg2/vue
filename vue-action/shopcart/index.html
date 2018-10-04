@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>购物车式例</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <template v-if="list.length">
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" @click="toggleAll" :checked="selectAll"/></th>
+              <th>商品名称</th>
+              <th>商品单价</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in list">
+              <td><input type="checkbox" @click="toggleOne(index)" :checked="item.isSelected"/></td>
+              <td>{{item.name}}</td>
+              <td>{{item.price}}</td>
+              <td>
+                <button @click="handleReduce(index)" :disabled="item.count === 1">-</button>
+                {{item.count}}
+                <button @click="handleAdd(index)">+</button>
+              </td>
+              <td>
+                <button @click="handleRemove(index)">移除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>总价: ￥{{totalPrice}}</div>
+      </template>
+      <div v-else>购物车为空</div>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          list: [
+            {id: 1, name:'Phone 7', price: 6188 , count: 1, isSelected: false},
+            {id: 2, name:'iPad Pr。', price : 5888, count : 1, isSelected: false},
+            {id: 3, name:'MacBook Pro', price : 21488, count: 1, isSelected: false}
+          ],
+          selectAll: false
+        },
+        computed: {
+          totalPrice: function() {
+            var total = 0;
+            for( var i=0; i<this.list.length; i++) {
+              var item = this.list[i];
+              if(item.isSelected) {
+                total += item.price
+              }
+              // total += item.price * item.count;
+            }
+
+            // for( var i=0; i<this.list.length; i++) {
+            //   var item = this.list[i];
+            //   total += item.price * item.count;
+            // }
+            return total.toString().replace(/\B (?= (\d{3}) +$)/g, ',');
+          }
+        },
+        methods: {
+          toggleAll () {
+            this.selectAll = !this.selectAll;
+            if(this.selectAll) {
+              for( var i=0; i<this.list.length; i++) {
+                var item = this.list[i];
+                item.isSelected = true;
+              }
+            } else {
+              for( var i=0; i<this.list.length; i++) {
+                var item = this.list[i];
+                item.isSelected = false;
+              }
+            }
+          },
+          toggleOne (index) {
+            this.list[index].isSelected = !this.list[index].isSelected;
+            var needSelectAll = true;
+            for(var i=0; i<this.list.length; i++) {
+              if(!this.list[i].isSelected) {
+                needSelectAll = false;
+                break;
+              }
+            }
+            if(needSelectAll) {
+              this.selectAll = true;
+            } else {
+              this.selectAll = false;
+            }
+          },
+          handleReduce (index) {
+            if(this.list[index].count === 1) {
+              return;
+            }
+            this.list[index].count--;
+          },
+          handleAdd (index) {
+            this.list[index].count++;
+          },
+          handleRemove (index) {
+            this.list.splice(index, 1);
+          },
+        }
+      })
+    </script>
+  </body>
+</html>
