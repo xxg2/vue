@@ -6,7 +6,7 @@ const port = 8010;
 const imgPort = 8011;
 
 const apiServer = http.createServer((req, res)=> {
-  const url='http://news-at.zhihu.com/api/4'+req.url;
+  const url='http://news-at.zhihu.com/api/4/news'+req.url;
   const options = {
     url: url
   };

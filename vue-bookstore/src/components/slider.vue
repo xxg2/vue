@@ -52,7 +52,6 @@
         props: ['slides'],
 
         mounted() {
-            debugger
             new Swiper(this.$refs.slider, {
                 pagination: this.$refs.pagination,
                 paginationClickable: true,

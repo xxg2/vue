@@ -7,7 +7,7 @@
   </a>
 </template>
 <script>
-  import $ from '../libs/util';
+  import $ from '../daily/lib/util';
   export default {
     props: {
       data: {

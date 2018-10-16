@@ -18,7 +18,7 @@
                        heading="编辑推荐">
             </book-list>
         </div>
- 
+
         <modal-dialog ref="dialog">
             <div slot="heading"></div>
             <div>
@@ -69,7 +69,7 @@
         },
         created() {
 
-            this.page_data = faker.getHomeData()
+            this.page_data = faker.getHomeData();
 
 //            this.$http.get('/books/promotions', (res)=> {
 //                this.page_data = res.data
@@ -81,8 +81,39 @@
         components: {Slider, BookList,ModalDialog},
         methods: {
             preview (book) {
-                this.selected = book
-                this.$refs.dialog.open()
+              debugger;
+              var js = [{
+                "id": 4,
+                "title": "大数据架构详解：从数据获取到深度学习",
+                "authors": [
+                  "朱洁",
+                  "罗华霖"
+                ],
+                "img_url": "4.svg"
+              },
+              {
+                "id": 5,
+                "title": "Meteor全栈开发",
+                "authors": [
+                  "杜亦舒"
+                ],
+                "img_url": "5.svg"
+              },
+              {
+                "id": 6,
+                "title": "Kubernetes权威指南：从Docker到Kubernetes实践全接触（第2版）",
+                "authors": [
+                  "龚正",
+                  "吴治辉",
+                  "王伟",
+                  "崔秀龙",
+                  "闫健勇"
+                ],
+                "img_url": "6.svg"
+              }]
+              this.page_data.promotions = this.page_data.promotions.concat(js);
+                // this.selected = book
+                // this.$refs.dialog.open()
             }
         }
     }
