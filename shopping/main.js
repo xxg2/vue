@@ -65,6 +65,17 @@ const store = new Vuex.Store({
           count: 1
         })
       }
+    },
+    editCartCount(state, payload) {
+      const product = state.cartList.find(item => item.id === payload.id);
+      product.count += payload.count;
+    },
+    deleteCart(state, id) {
+      const index = state.cartList.findIndex(item => item.id === id);
+      state.cartList.splice(index, 1);
+    },
+    emptyCart(state) {
+      state.cartList = [];
     }
   },
   actions: {
@@ -72,6 +83,14 @@ const store = new Vuex.Store({
       setTimeout(() => {
         context.commit('setProductList', product_data)
       }, 500);
+    },
+    buy(context) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          context.commit('emptyCart');
+          resolve();
+        }, 500)
+      })
     }
   }
 })
